@@ -4,8 +4,8 @@
     html_logo_url = "https://raw.githubusercontent.com/RustCrypto/meta/master/logo.svg",
     html_favicon_url = "https://raw.githubusercontent.com/RustCrypto/meta/master/logo.svg"
 )]
-#![cfg_attr(docsrs, feature(doc_auto_cfg))]
-#![warn(missing_docs)]
+#![cfg_attr(docsrs, feature(doc_cfg))]
+#![warn(missing_docs, unreachable_pub)]
 
 use core::marker::PhantomData;
 
@@ -72,6 +72,18 @@ struct HashCore<P: HashParameters> {
     state: State,
     phantom: PhantomData<P>,
 }
+
+#[cfg(feature = "zeroize")]
+impl<P: HashParameters> digest::zeroize::ZeroizeOnDrop for HashCore<P> {}
+
+#[allow(dead_code)]
+#[cfg(feature = "zeroize")]
+const _: () = {
+    // State is the only field in AsconCore
+    fn check_core(v: &State) {
+        let _ = v as &dyn digest::zeroize::ZeroizeOnDrop;
+    }
+};
 
 impl<P: HashParameters> HashCore<P> {
     fn absorb_block(&mut self, block: &[u8; 8]) {
@@ -194,6 +206,18 @@ impl SerializableState for AsconCore {
         })
     }
 }
+
+#[cfg(feature = "zeroize")]
+impl digest::zeroize::ZeroizeOnDrop for AsconCore {}
+
+#[allow(dead_code)]
+#[cfg(feature = "zeroize")]
+const _: () = {
+    // HashCore is the only field in AsconCore
+    fn check_core(v: &HashCore<Parameters>) {
+        let _ = v as &dyn digest::zeroize::ZeroizeOnDrop;
+    }
+};
 
 /// Ascon XOF
 #[derive(Clone, Debug, Default)]

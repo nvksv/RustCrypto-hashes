@@ -9,11 +9,12 @@ Additionally all crates do not require the standard library (i.e. `no_std` capab
 
 ## Supported Algorithms
 
-**Note:** For new applications, or where compatibility with other existing standards is not a primary concern, we strongly recommend to use either BLAKE2, SHA-2 or SHA-3.
+**Note:** For new applications, or where compatibility with other existing standards is not a primary concern, we strongly recommend to use either [BLAKE3][`blake3`], SHA-2 or SHA-3.
 
 | Algorithm | Crate | Crates.io | Documentation | MSRV | [Security] |
 |-----------|-------|:---------:|:-------------:|:----:|:----------:|
 | [Ascon] hash | [`ascon‑hash`] | [![crates.io](https://img.shields.io/crates/v/ascon-hash.svg)](https://crates.io/crates/ascon-hash) | [![Documentation](https://docs.rs/ascon-hash/badge.svg)](https://docs.rs/ascon-hash) | 1.85 | :green_heart: |
+| [Bash] hash | [`bash‑hash`] | [![crates.io](https://img.shields.io/crates/v/bash-hash.svg)](https://crates.io/crates/bash-hash) | [![Documentation](https://docs.rs/bash-hash/badge.svg)](https://docs.rs/bash-hash) | 1.85 | :green_heart: |
 | [BelT] hash | [`belt‑hash`] | [![crates.io](https://img.shields.io/crates/v/belt-hash.svg)](https://crates.io/crates/belt-hash) | [![Documentation](https://docs.rs/belt-hash/badge.svg)](https://docs.rs/belt-hash) | 1.85 | :green_heart: |
 | [BLAKE2] | [`blake2`] | [![crates.io](https://img.shields.io/crates/v/blake2.svg)](https://crates.io/crates/blake2) | [![Documentation](https://docs.rs/blake2/badge.svg)](https://docs.rs/blake2) | 1.85 | :green_heart: |
 | [FSB] | [`fsb`] | [![crates.io](https://img.shields.io/crates/v/fsb.svg)](https://crates.io/crates/fsb) | [![Documentation](https://docs.rs/fsb/badge.svg)](https://docs.rs/fsb) | 1.85 | :green_heart: |
@@ -235,6 +236,7 @@ Unless you explicitly state otherwise, any contribution intentionally submitted 
 [//]: # (crates)
 
 [`ascon‑hash`]: ./ascon-hash
+[`bash‑hash`]: ./bash-hash
 [`belt‑hash`]: ./belt-hash
 [`blake2`]: ./blake2
 [`fsb`]: ./fsb
@@ -278,6 +280,7 @@ Unless you explicitly state otherwise, any contribution intentionally submitted 
 [//]: # (algorithms)
 
 [Ascon]: https://ascon.iaik.tugraz.at
+[Bash]: https://apmi.bsu.by/assets/files/std/bash-spec241.pdf
 [BelT]: https://ru.wikipedia.org/wiki/BelT
 [BLAKE2]: https://en.wikipedia.org/wiki/BLAKE_(hash_function)#BLAKE2
 [FSB]: https://en.wikipedia.org/wiki/Fast_syndrome-based_hash

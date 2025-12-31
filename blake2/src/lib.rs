@@ -4,9 +4,9 @@
     html_logo_url = "https://raw.githubusercontent.com/RustCrypto/media/6ee8e381/logo.svg",
     html_favicon_url = "https://raw.githubusercontent.com/RustCrypto/media/6ee8e381/logo.svg"
 )]
-#![cfg_attr(docsrs, feature(doc_auto_cfg))]
+#![cfg_attr(docsrs, feature(doc_cfg))]
 #![allow(unexpected_cfgs)] // `simd` feature is broken
-#![warn(missing_docs)]
+#![warn(missing_docs, unreachable_pub)]
 #![cfg_attr(feature = "simd", feature(platform_intrinsics, repr_simd))]
 #![cfg_attr(feature = "simd", allow(incomplete_features))]
 
@@ -15,11 +15,10 @@ pub use digest::{self, Digest};
 use core::{fmt, marker::PhantomData, ops::Div};
 use digest::{
     CustomizedInit, FixedOutput, HashMarker, InvalidOutputSize, MacMarker, Output, Update,
-    VarOutputCustomized,
     array::{Array, ArraySize},
     block_api::{
         AlgorithmName, Block, BlockSizeUser, Buffer, BufferKindUser, OutputSizeUser, TruncSide,
-        UpdateCore, VariableOutputCore,
+        UpdateCore, VariableOutputCore, VariableOutputCoreCustomized,
     },
     block_buffer::{Lazy, LazyBuffer},
     consts::{U4, U16, U32, U64, U128},
@@ -80,12 +79,6 @@ where
     }
 }
 
-digest::buffer_rt_variable!(
-    /// BLAKE2b which allows to choose output size at runtime.
-    pub struct Blake2bVar(Blake2bVarCore);
-    exclude: SerializableState;
-);
-
 /// BLAKE2b-128 hasher state.
 pub type Blake2b128 = Blake2b<U16>;
 /// BLAKE2b-256 hasher state.
@@ -133,12 +126,6 @@ where
         }
     }
 }
-
-digest::buffer_rt_variable!(
-    /// BLAKE2s which allows to choose output size at runtime.
-    pub struct Blake2sVar(Blake2sVarCore);
-    exclude: SerializableState;
-);
 
 /// BLAKE2s-128 hasher state.
 pub type Blake2s128 = Blake2s<U16>;

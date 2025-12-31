@@ -9,7 +9,7 @@ edition = "2024"
 rust-version = "1.85"
 documentation = "https://docs.rs/sha1-checked"
 repository = "https://github.com/RustCrypto/hashes"
-keywords = ["crypto", "sha1", "hash", "digest"]
+keywords = ["sha1", "hash", "digest"]
 categories = ["cryptography", "no-std"]
 
 exclude = [
@@ -18,14 +18,14 @@ exclude = [
 ]
 
 [dependencies]
-digest = "0.11.0-rc.0"
-sha1 = { version = "0.11.0-rc.0", default-features = false }
+digest = "0.11.0-rc.5"
+sha1 = { version = "0.11.0-rc.2", default-features = false }
 zeroize = { version = "1.8", default-features = false, optional = true }
 
 [dev-dependencies]
-digest = { version = "0.11.0-rc.0", features = ["dev"] }
+digest = { version = "0.11.0-rc.5", features = ["dev"] }
 hex-literal = "1"
-base16ct = { version = "0.2", features = ["alloc"] }
+base16ct = { version = "0.3", features = ["alloc"] }
 
 [features]
 default = ["alloc", "oid"]
